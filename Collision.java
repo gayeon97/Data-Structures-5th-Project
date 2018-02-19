@@ -35,8 +35,12 @@ public class Collision implements Comparable<Collision>{
 	 * @throws IllegalArgumentException
 	 */
 	public Collision(ArrayList<String> entries) throws IllegalArgumentException{
-		if ( entries == null || entries.size() == 0){
-			throw new IllegalArgumentException("Error: an empty or null ArrayList is passed into the parameter.");
+		if (entries == null){
+			throw new NullPointerException("Error: null ArrayList is passed into the parameter.");
+		}
+		
+		if (entries.size() == 0){
+			throw new IllegalArgumentException("Error: an empty ArrayList is passed into the parameter.");
 		}
 		
 		//checks if date is not empty and is a valid Date object
