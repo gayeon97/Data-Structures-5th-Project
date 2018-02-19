@@ -8,12 +8,12 @@ https://data.cityofnewyork.us/Public-Safety/NYPD-Motor-Vehicle-Collisions/h9gi-n
 The program prompts the user for the zip code, start date and end date. The program validates that the zip code is in a correct format. Valid zip codes have exactly 5 characters and all characters are digits. The program validates that the dates are in a correct format. The valid dates should be written as mm/dd/yyyy (the month and day can be either one or two digits long, the year has to be four digits long). The start date should be smaller than (earlier) than the end date. After the program displays the results, the user should be prompted for the zip code, start date and end date again. The program should terminate when the user enters ”quit” in place of the zip code.
 
 Results should be displayed in following manner:
-        Enter a zip code (’quit’ to exit): 10012
-        Enter start date (MM/DD/YYYY): 1/1/2017
-        Enter end date (MM/DD/YYYY): 11/20/2017
-        Motor Vehicle Collisions for zipcode 10012 (01/01/2017 - 11/20/2017)
-        ====================================================================
-        Total number of collisions: 708
+  Enter a zip code (’quit’ to exit): 10012
+  Enter start date (MM/DD/YYYY): 1/1/2017
+  Enter end date (MM/DD/YYYY): 11/20/2017
+  Motor Vehicle Collisions for zipcode 10012 (01/01/2017 - 11/20/2017)
+  ====================================================================
+  Total number of collisions: 708
         Number of fatalities: 0
                  pedestrians: 0
                     cyclists: 0
