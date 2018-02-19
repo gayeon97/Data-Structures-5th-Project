@@ -12,7 +12,6 @@ Enter a zip code (’quit’ to exit): 10012
 Enter start date (MM/DD/YYYY): 1/1/2017
 Enter end date (MM/DD/YYYY): 11/20/2017
 Motor Vehicle Collisions for zipcode 10012 (01/01/2017 - 11/20/2017)
-====================================================================
 Total number of collisions: 708
       Number of fatalities: 0
                pedestrians: 0
