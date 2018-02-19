@@ -30,5 +30,5 @@ If the filename is omitted from the command line, it is an error. The program sh
 If the filename is given but the file does not exist or cannot be opened for reading by the program, for any reason, it is an error. The program displays an error message and terminate. The error message indicates what went wrong (i.e: ”Error: file collisions.csv does not exist.”).
 
 The program does not hardcode the input filename in its own code; it is up to the user of the program to specify the name
-of the input file. Your program does not modify the name of the user-specified file (do not append anything to the name).
+of the input file. The program does not modify the name of the user-specified file (do not append anything to the name).
 The program also does not read the input file more than once nor modify the input file.
