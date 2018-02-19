@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 public class CollisionsData {
 	
-	// root of the tree
+	//Root of the tree
 	protected Node<Collision> root;
-	// current number of nodes in the AVL tree
+	//Current number of nodes in the AVL tree
 	protected int numOfElements;
-	//helper variable used by the remove methods 
+	//Helper variable used by the remove methods 
 	private boolean found;
 
 	/**
@@ -46,8 +46,7 @@ public class CollisionsData {
 	 * 
 	 * @param item the new element to be added to the AVL tree
 	 * @return Node<Collision> If at the very bottom of the AVL tree, the newly created Node<Collision> 
-	 * using Collision data is returned. Else, Node<Collision> after balancing 
-	 * is returned from the previous recursion call.  
+	 * using Collision data is returned. Else, Node<Collision> after balancing is returned from the previous recursion call.  
 	 */
 	private Node<Collision> recAdd(Node<Collision> node, Collision item){
 		if (node == null){ 
@@ -128,7 +127,7 @@ public class CollisionsData {
 		} else {
 			numOfElements --;
 			node = removeNode(node);
-			//updateHeight(node); //FORGOT TO WRITE THIS LINE
+			updateHeight(node); 
 			if (balanceFactor(node) == 2){
 				if (balanceFactor(node.right) < 0){
 					node = balanceRL(node);
@@ -136,14 +135,13 @@ public class CollisionsData {
 					node = balanceRR(node);
 				}
 			}
-			//NEED ALL 4 ROTATIONS
-//			if (balanceFactor(node) == -2){
-//				if (balanceFactor(node.left) > 0){
-//					node = balanceLR(node);
-//				} else if (balanceFactor(node.left) <= 0){
-//					node = balanceLL(node);
-//				}
-//			}
+			if (balanceFactor(node) == -2){
+				if (balanceFactor(node.left) > 0){
+					node = balanceLR(node);
+				} else if (balanceFactor(node.left) <= 0){
+					node = balanceLL(node);
+				}
+			}
 			found = true;
 		}
 		return node;
@@ -319,7 +317,7 @@ public class CollisionsData {
 	
 	/**
 	 * Returns a string representation of this tree using an inorder traversal.
-	 * This is taken from the BST_Recursive.java file given to us by Joanna. 
+	 * This is taken from the BST_Recursive.java file given to us by Professor Klukowska. 
 	 * @see java.lang.Object#toString()
 	 * @return string representation of this tree 
 	 */
@@ -330,9 +328,8 @@ public class CollisionsData {
 	}
 
 	/* 
-	 * Actual recursive implementation of inorder traversal to produce string
-	 * representation of this tree.
-	 * This is taken from the BST_Recursive.java file given to us by Joanna.
+	 * Actual recursive implementation of inorder traversal to produce string representation of this tree.
+	 * This is taken from the BST_Recursive.java file given to us by Professor Klukowska.
 	 * 
 	 * @param tree the root of the current subtree
 	 * @param s the string that accumulated the string representation of this BST
@@ -348,7 +345,7 @@ public class CollisionsData {
 	/**
 	 * Returns a string that contains graphical representation of this tree. 
 	 * Produces tree like string representation of this BST.
-	 * This is taken from the BST_Recursive.java file given to us by Joanna.
+	 * This is taken from the BST_Recursive.java file given to us by Professor Klukowska.
 	 * 
 	 * @return string containing tree-like representation of this BST.
 	 */
@@ -362,13 +359,11 @@ public class CollisionsData {
 	/*
 	 * Actual recursive implementation of preorder traversal to produce tree-like string
 	 * representation of this tree.
-	 * This is taken from the BST_Recursive.java file given to us by Joanna.
+	 * This is taken from the BST_Recursive.java file given to us by Professor Klukowska.
 	 * 
 	 * @param tree the root of the current subtree
-	 * @param level level (depth) of the current recursive call in the tree to
-	 *   determine the indentation of each item
-	 * @param output the string that accumulated the string representation of this
-	 *   BST
+	 * @param level level (depth) of the current recursive call in the tree to determine the indentation of each item
+	 * @param output the string that accumulated the string representation of this BST
 	 */
 	private void preOrderPrint(Node<Collision> tree, int level, StringBuilder output) {
 		if (tree != null) {
@@ -396,9 +391,8 @@ public class CollisionsData {
 		}
 	}
 	
-	//this will be used in the find() and getReport() method 
-	//to store all the Collision objects that meet the criteria given by the parameters of 
-	//the getReport method (same zip, date in the correct date range)
+	//This will be used in the find() and getReport() method to store all the Collision objects that meet the criteria 
+	//given by the parameters of the getReport method (same zip, date in the correct date range)
 	private ArrayList<Collision> match = new ArrayList<Collision>();
 	
 	/*
@@ -415,8 +409,7 @@ public class CollisionsData {
 			return;
 		}
 		
-		//if the zip of the current node is equal to the zip given
-		//and the date is within the range of the dates given, 
+		//If the zip of the current node is equal to the zip given and the date is within the range of the dates given, 
 		//add the data of the current node to the ArrayList<Collision> match
 		if (Integer.parseInt(zip) == Integer.parseInt(n.data.getZip()) 
 				&& (n.data.getDate()).compareTo(beginDate) >= 0 
@@ -424,29 +417,29 @@ public class CollisionsData {
 			match.add(n.data);
 		}
 		
-		//if the zip of the current node is greater than the zip given, 
+		//If the zip of the current node is greater than the zip given, 
 		//go to the left node to keep finding the node with qualifying data
 		if (Integer.parseInt(zip) < Integer.parseInt(n.data.getZip())){
 			find(zip,beginDate,endDate,n.left); 
 		} 
-		//if the zip of the current node is less than the zip given, 
+		//If the zip of the current node is less than the zip given, 
 		//go to the right node to keep finding the node with qualifying data
 		else if (Integer.parseInt(zip) > Integer.parseInt(n.data.getZip())){
 			find(zip,beginDate,endDate,n.right); 
-		} else { //if the zip of the current node is equal to the zip given		
-			//if the date of the current node is less than the start date
+		} else { //If the zip of the current node is equal to the zip given		
+			//and if the date of the current node is less than the start date
 			//go to the right node to keep finding the node with qualifying data
 			if (n.data.getDate().compareTo(beginDate) < 0){
 				//Recur on the right subtree
 				find(zip,beginDate,endDate,n.right); 
 			}
-			//if the date of the current node is greater than the end date
+			//If the date of the current node is greater than the end date
 			//go to the left node to keep finding the node with qualifying data
 			else if (n.data.getDate().compareTo(endDate) > 0){
 				//Recur on the left subtree
 				find(zip,beginDate,endDate,n.left); 
 			}
-			//if the date of the current node is within or equal to the date range specified by the parameter,
+			//If the date of the current node is within or equal to the date range specified by the parameter,
 			//go to both left and right node to keep finding the node with qualifying data
 			else if (n.data.getDate().compareTo(endDate) <= 0 && n.data.getDate().compareTo(beginDate) >= 0){
 				//Recur on the left subtree
@@ -458,8 +451,7 @@ public class CollisionsData {
 	
 	/**
 	 * Returns a string containing info about the total number of fatalities and injuries
-	 * along with the breakdown of each for pedestrians, cyclists, and motorists
-	 * for a given zip code and date range.
+	 * along with the breakdown of each for pedestrians, cyclists, and motorists for a given zip code and date range.
 	 * 
 	 * @param zip
 	 * @param dateBegin
@@ -524,8 +516,8 @@ public class CollisionsData {
 
 		protected Node <Collision> left;  //reference to the left subtree 
 		protected Node <Collision> right; //reference to the right subtree
-		protected Collision data;            //data item stored in the node
-		protected int height; 				//the height of the node
+		protected Collision data;         //data item stored in the node
+		protected int height; 		  //the height of the node
 
 		/**
 		 * Constructs a BSTNode initializing the data part 
