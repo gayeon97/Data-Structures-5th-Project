@@ -52,27 +52,26 @@ public class CollisionInfo {
 
 			}	
 		}
-		//close the input file
+		//Close the input file
 		collisionDataFile.close();
 				
-		//first ask a user to enter in a zip code
+		//First ask a user to enter in a zip code
 		System.out.print("Enter a zip code ('quit' to exit): ");
 		Scanner input = new Scanner(System.in);
 		String userInput = input.next();
 		
-		//the program will continue to ask the user for an input
-		//and will only terminate when the user enters "quit"
+		//The program will continue to ask the user for an input and will only terminate when the user enters "quit"
 		while (!userInput.equalsIgnoreCase("quit")){
 			String userZip = "";
 			boolean isValidZip = false;
 			Date userStartDate = null; 
 			Date userEndDate = null;
 
-			//check if the user entry for zip is a valid zip code
+			//Check if the user entry for zip is a valid zip code
 			if (userInput.length() != 5){ //check if the user input is 5 in length
 				System.out.println("Invalid zip code. Try agian." + '\n');
 			} else{
-				//check if the user input of 5 in length contains digits only
+				//Check if the user input of 5 in length contains digits only
 				String possibleNums = "0123456789";
 				for (int i = 0; i < userInput.length(); i ++){
 					if ( possibleNums.contains(userInput.substring(i,i+1)) ){
@@ -86,7 +85,7 @@ public class CollisionInfo {
 					}	
 				}	
 
-				//if the user entry for zip is a valid zip code,
+				//If the user entry for zip is a valid zip code,
 				//check if the user entry for start and end dates are valid dates
 				if (isValidZip){
 					System.out.print("Enter start date (MM/DD/YYYY): ");
@@ -110,7 +109,7 @@ public class CollisionInfo {
 					}	
 				}				
 			}			
-			//prompt the user again to enter a zip code
+			//Prompt the user again to enter a zip code
 			System.out.print("Enter a zip code ('quit' to exit): ");
 			userInput = input.next();
 		}		
@@ -132,14 +131,14 @@ public class CollisionInfo {
 		boolean insideQuotes = false; 
 		boolean insideEntry= false;
 
-		// iterate over all characters in the textLine
+		//Iterate over all characters in the textLine
 		for (int i = 0; i < lineLength; i++) {
 			nextChar = textLine.charAt(i);
 
-			// handle smart quotes as well as regular quotes
+			//Handle smart quotes as well as regular quotes
 			if (nextChar == '"' || nextChar == '\u201C' || nextChar =='\u201D') {
 
-				// change insideQuotes flag when nextChar is a quote
+				//Change insideQuotes flag when nextChar is a quote
 				if (insideQuotes) {
 					insideQuotes = false; 
 					insideEntry = false;
@@ -149,28 +148,28 @@ public class CollisionInfo {
 				}
 			} else if (Character.isWhitespace(nextChar)) {
 				if ( insideQuotes || insideEntry ) {
-					// add it to the current entry 
+					//Add it to the current entry 
 					nextWord.append( nextChar );
-				}else { // skip all spaces between entries
+				}else { //Skip all spaces between entries
 					continue; 
 				}
 			} else if ( nextChar == ',') {
-				if (insideQuotes){ // comma inside an entry
+				if (insideQuotes){ //Comma inside an entry
 					nextWord.append(nextChar); 
-				} else { // end of entry found
+				} else { //End of entry found
 					insideEntry = false;
 					entries.add(nextWord.toString());
 					nextWord = new StringBuffer();
 				}
 			} else {
-				// add all other characters to the nextWord
+				//Add all other characters to the nextWord
 				nextWord.append(nextChar);
 				insideEntry = true;
 			} 
 
 		}
-		// add the last word ( assuming not empty ) 
-		// trim the white space before adding to the list 
+		//Add the last word ( assuming not empty ) 
+		//Trim the white space before adding to the list 
 		if (!nextWord.toString().equals("")) {
 			entries.add(nextWord.toString().trim());
 		}
