@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * This class represents a single collision (single valid row from the input file).
  * @author Gayeon_Park
- *
  */
 public class Collision implements Comparable<Collision>{
 	
